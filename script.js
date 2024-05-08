@@ -10,9 +10,29 @@ document.addEventListener("click", (event) => {
   }
 });
 
-function handleButtonClick(target) {}
+function handleButtonClick(target) {
+  if (target.classList.contains("operation")) {
+    operate(target);
+  } else {
+    calculator.currentNum += target.textContent;
+    updateDisplay(target.textContent);
+  }
+}
+
+function operate(target) {
+  if (target.id === "clear") {
+  } else if (target.id === "equals") {
+  } else {
+    newOperation(target);
+  }
+}
+
+function newOperation(target) {
+  updateDisplay(` ${target.textContent} `);
+}
+
 function updateDisplay(input) {
-  const display = document.querySelector("#display");
+  display = document.querySelector("#display");
   display.textContent += input;
 }
 
