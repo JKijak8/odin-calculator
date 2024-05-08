@@ -1,0 +1,42 @@
+#calculator {
+    height: 500px;
+    width: 500px;
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 2px;
+}
+
+.button-line {
+    justify-content: stretch;
+    align-items: stretch;
+    display: flex;
+}
+
+.button-line,
+#display {
+    height: 20%;
+}
+
+#display {
+    border: 1px solid grey;
+}
+
+#calculator,
+.button-line {
+    gap: 2px;
+}
+
+button {
+    flex: 1 0 0;
+    font-weight: bold;
+    font-size: 25px;
+    background-color: #E9FFF9;
+}
+
+.operation {
+    background-color: #364652;
+    color: white;
+}
