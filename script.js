@@ -3,6 +3,14 @@ let calculator = {
   numbers: [],
 };
 
+document.addEventListener("click", (event) => {
+  let target = event.target;
+  if (target.nodeName === "BUTTON") {
+    handleButtonClick(target);
+  }
+});
+
+function handleButtonClick(target) {}
 function updateDisplay(input) {
   const display = document.querySelector("#display");
   display.textContent += input;
