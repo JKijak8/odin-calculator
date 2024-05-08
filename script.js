@@ -3,6 +3,11 @@ let calculator = {
   numbers: [],
 };
 
+function updateDisplay(input) {
+  const display = document.querySelector("#display");
+  display.textContent += input;
+}
+
 function add(num1, num2) {
   return num1 + num2;
 }
