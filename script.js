@@ -21,8 +21,9 @@ function handleButtonClick(target) {
 
 function operate(target) {
   if (target.id === "clear") {
+    clear();
   } else if (target.id === "equals") {
-    pushToCache(calculator.currentNum);
+    newOperation(target);
   } else {
     newOperation(target);
   }
@@ -37,6 +38,14 @@ function newOperation(target) {
 
 function pushToCache(content) {
   calculator.cache[calculator.cache.length] = content;
+}
+
+function clear() {
+  calculator.cache = [];
+  calculator.currentNum = [];
+
+  const display = document.querySelector("#display");
+  display.textContent = "";
 }
 
 function updateDisplay(input) {
