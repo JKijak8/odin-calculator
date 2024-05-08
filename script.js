@@ -1,6 +1,6 @@
 let calculator = {
   currentNum: "",
-  numbers: [],
+  cache: [],
 };
 
 document.addEventListener("click", (event) => {
@@ -22,6 +22,7 @@ function handleButtonClick(target) {
 function operate(target) {
   if (target.id === "clear") {
   } else if (target.id === "equals") {
+    pushToCache(calculator.currentNum);
   } else {
     newOperation(target);
   }
@@ -29,6 +30,13 @@ function operate(target) {
 
 function newOperation(target) {
   updateDisplay(` ${target.textContent} `);
+  pushToCache(calculator.currentNum);
+  pushToCache(target.textContent);
+  calculator.currentNum = "";
+}
+
+function pushToCache(content) {
+  calculator.cache[calculator.cache.length] = content;
 }
 
 function updateDisplay(input) {
