@@ -1,6 +1,7 @@
 let calculator = {
   currentNum: "",
   cache: [],
+  display: document.querySelector("#display"),
 };
 
 document.addEventListener("click", (event) => {
@@ -11,6 +12,14 @@ document.addEventListener("click", (event) => {
 });
 
 function handleButtonClick(target) {
+  if (
+    calculator.display.textContent.length > 0 &&
+    calculator.currentNum.length === 0 &&
+    calculator.cache.length === 0
+  ) {
+    clearDisplay();
+  }
+
   if (target.classList.contains("operation")) {
     operate(target);
   } else if (target.id === "comma") {
@@ -32,8 +41,6 @@ function operate(target) {
     clear();
   } else if (target.id === "equals") {
     calculate();
-    clearDisplay();
-    updateDisplay(calculator.currentNum);
   } else {
     newOperation(target);
   }
@@ -56,6 +63,12 @@ function calculate() {
   let divIndex = calculator.cache.indexOf("/");
 
   while (multIndex >= 0 || divIndex >= 0) {
+    if (divIndex >= 0 && calculator.cache[divIndex + 1] === "0") {
+      clear();
+      updateDisplay("You can't div by 0");
+      return;
+    }
+
     reduceCache(multIndex, divIndex, multiply, divide);
     multIndex = calculator.cache.indexOf("*");
     divIndex = calculator.cache.indexOf("/");
@@ -72,6 +85,8 @@ function calculate() {
 
   calculator.currentNum = `${calculator.cache[0]}`;
   calculator.cache.splice(0, 1);
+  clearDisplay();
+  updateDisplay(calculator.currentNum);
 }
 
 function reduceCache(index1, index2, funct1, funct2) {
@@ -80,6 +95,7 @@ function reduceCache(index1, index2, funct1, funct2) {
       +calculator.cache[index1 - 1],
       +calculator.cache[index1 + 1],
     );
+    result = Math.round(result * 100) / 100;
     calculator.cache.splice(index1 - 1, 3, result);
   }
   if ((index2 >= 0 && index2 < index1) || (index2 >= 0 && index1 < 0)) {
@@ -98,13 +114,11 @@ function clear() {
 }
 
 function clearDisplay() {
-  const display = document.querySelector("#display");
-  display.textContent = "";
+  calculator.display.textContent = "";
 }
 
 function updateDisplay(input) {
-  display = document.querySelector("#display");
-  display.textContent += input;
+  calculator.display.textContent += input;
 }
 
 function add(num1, num2) {
