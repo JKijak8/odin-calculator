@@ -27,15 +27,17 @@ function operate(target) {
     newOperation(target);
   } else {
     newOperation(target);
+    console.log(calculator.cache);
   }
 }
 
-//TODO: Make it impossible to enter only an operation sign, and to chain operation signs.
 function newOperation(target) {
-  updateDisplay(` ${target.textContent} `);
-  calculator.cache.push(calculator.currentNum);
-  calculator.cache.push(target.textContent);
-  calculator.currentNum = "";
+  if (calculator.currentNum.length !== 0) {
+    updateDisplay(` ${target.textContent} `);
+    calculator.cache.push(calculator.currentNum);
+    calculator.cache.push(target.textContent);
+    calculator.currentNum = "";
+  }
 }
 
 function clear() {
