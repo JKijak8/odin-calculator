@@ -30,6 +30,10 @@ function handleButtonClick(target) {
       calculator.currentNum += target.textContent;
       updateDisplay(target.textContent);
     }
+  } else if (calculator.currentNum === "0") {
+    backspace();
+    calculator.currentNum += target.textContent;
+    updateDisplay(target.textContent);
   } else {
     calculator.currentNum += target.textContent;
     updateDisplay(target.textContent);
