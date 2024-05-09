@@ -19,6 +19,7 @@ function handleButtonClick(target) {
   }
 }
 
+//TODO: Add logic for commas.
 function operate(target) {
   if (target.id === "clear") {
     clear();
@@ -29,15 +30,12 @@ function operate(target) {
   }
 }
 
+//TODO: Make it impossible to enter only an operation sign, and to chain operation signs.
 function newOperation(target) {
   updateDisplay(` ${target.textContent} `);
-  pushToCache(calculator.currentNum);
-  pushToCache(target.textContent);
+  calculator.cache.push(calculator.currentNum);
+  calculator.cache.push(target.textContent);
   calculator.currentNum = "";
-}
-
-function pushToCache(content) {
-  calculator.cache[calculator.cache.length] = content;
 }
 
 function clear() {
