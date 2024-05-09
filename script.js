@@ -39,6 +39,8 @@ function handleButtonClick(target) {
 function operate(target) {
   if (target.id === "clear") {
     clear();
+  } else if (target.id === "backspace") {
+    backspace();
   } else if (target.id === "equals") {
     calculate();
   } else {
@@ -111,6 +113,27 @@ function clear() {
   calculator.cache = [];
   calculator.currentNum = [];
   clearDisplay();
+}
+
+function backspace() {
+  if (
+    calculator.currentNum.length === 0 &&
+    calculator.cache.length !== 0 &&
+    isNaN(calculator.cache[calculator.cache.length - 1])
+  ) {
+    calculator.cache.pop();
+    calculator.currentNum = calculator.cache.pop();
+    calculator.display.textContent = calculator.display.textContent.slice(
+      0,
+      -3,
+    );
+  } else if (calculator.currentNum.length > 0) {
+    calculator.currentNum = calculator.currentNum.slice(0, -1);
+    calculator.display.textContent = calculator.display.textContent.slice(
+      0,
+      -1,
+    );
+  }
 }
 
 function clearDisplay() {
