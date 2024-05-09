@@ -1,12 +1,12 @@
 #calculator {
     min-height: 500px;
     width: 500px;
+    border-radius: 15px;
     margin: auto;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    border: 4px solid black;
     padding: 2px;
-    flex: 1 1 auto;
 }
 
 .button-line {
@@ -16,19 +16,16 @@
     flex: 1 1 0;
 }
 
-.button-line,
-#display {
-    min-height: 16%;
-}
-
 #display {
     display: flex;
     align-items: center;
     border: 1px solid grey;
+    border-radius: 15px;
+    padding: 5px;
     font-size: 60px;
-    text-wrap: wrap;
-    flex: 1 1 auto;
-    line-height: 0%;
+    overflow: scroll;
+    flex: 1 1 0;
+    line-height: 100%;
 }
 
 #calculator,
@@ -40,7 +37,7 @@ button {
     flex: 1 0 0;
     font-weight: bold;
     font-size: 25px;
-    background-color: #E9FFF9;
+    border-radius: 15px;
 }
 
 .operation {
