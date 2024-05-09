@@ -13,6 +13,14 @@ document.addEventListener("click", (event) => {
 function handleButtonClick(target) {
   if (target.classList.contains("operation")) {
     operate(target);
+  } else if (target.id === "comma") {
+    if (
+      calculator.currentNum.length !== 0 &&
+      !calculator.currentNum.includes(".")
+    ) {
+      calculator.currentNum += target.textContent;
+      updateDisplay(target.textContent);
+    }
   } else {
     calculator.currentNum += target.textContent;
     updateDisplay(target.textContent);
@@ -27,7 +35,6 @@ function operate(target) {
     newOperation(target);
   } else {
     newOperation(target);
-    console.log(calculator.cache);
   }
 }
 
