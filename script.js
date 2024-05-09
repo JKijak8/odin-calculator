@@ -4,6 +4,11 @@ let calculator = {
   display: document.querySelector("#display"),
 };
 
+document.addEventListener("keydown", (event) => {
+  event.preventDefault();
+  handleKeypress(event);
+});
+
 document.addEventListener("click", (event) => {
   let target = event.target;
   if (target.nodeName === "BUTTON") {
@@ -38,6 +43,40 @@ function handleButtonClick(target) {
     calculator.currentNum += target.textContent;
     updateDisplay(target.textContent);
   }
+}
+
+function handleKeypress(event) {
+  let key = event.key;
+  switch (key) {
+    case "C":
+      key = "#clear";
+      break;
+    case "Backspace":
+      key = "#backspace";
+      break;
+    case "+":
+      key = "#add";
+      break;
+    case "-":
+      key = "#substract";
+      break;
+    case "*":
+      key = "#multiply";
+      break;
+    case "/":
+      key = "#divide";
+      break;
+    case "=":
+      key = "#equals";
+      break;
+    case ".":
+      key = "#comma";
+      break;
+    default:
+      key = "#b" + event.key;
+  }
+
+  document.querySelector(key).click();
 }
 
 function operate(target) {
