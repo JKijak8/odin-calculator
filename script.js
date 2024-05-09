@@ -3,10 +3,13 @@ let calculator = {
   cache: [],
   display: document.querySelector("#display"),
 };
+const KEYS = [".", "C", "=", "*", "+", "-", "/", "Backspace"];
 
 document.addEventListener("keydown", (event) => {
-  event.preventDefault();
-  handleKeypress(event);
+  if (KEYS.includes(event.key) || (!isNaN(event.key) && event.key !== " ")) {
+    event.preventDefault();
+    handleKeypress(event);
+  }
 });
 
 document.addEventListener("click", (event) => {
