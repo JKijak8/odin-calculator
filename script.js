@@ -27,7 +27,6 @@ function handleButtonClick(target) {
   }
 }
 
-//TODO: Add logic for commas.
 function operate(target) {
   if (target.id === "clear") {
     clear();
@@ -50,7 +49,10 @@ function newOperation(target) {
 function clear() {
   calculator.cache = [];
   calculator.currentNum = [];
+  clearDisplay();
+}
 
+function clearDisplay() {
   const display = document.querySelector("#display");
   display.textContent = "";
 }
